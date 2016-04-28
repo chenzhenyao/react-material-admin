@@ -1,0 +1,33 @@
+.f-example-tabs
+	padding-bottom: 36px
+	margin-top: 24px
+	ul.user-list-wrap
+		margin: 0
+		li 
+			display: flex
+			height: 72px
+			header
+				width: 36px
+				height: 36px
+				margin: 18px
+				border-radius: 50%
+				background: no-repeat center center
+				background-size: cover
+			section
+				position: relative
+				box-sizing: border-box
+				width: calc(100% - 72px)
+				padding-right: 16px
+				border-bottom: 1px solid #F0F0F0
+				font-size: 14px
+				color: rgba(0, 0, 0, 0.54)
+				.title
+					margin-top: 14px
+					font-size: 18px
+					color: rgba(0, 0, 0, 0.870588)
+				.time
+					position: absolute
+					top: 14px
+					right: 10px
+				p 
+					margin 4px 0

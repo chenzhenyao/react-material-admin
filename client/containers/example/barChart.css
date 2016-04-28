@@ -1,0 +1,19 @@
+.f-example-bar-chart
+	margin-top: 24px
+	.bar-chart-wrap
+		margin: 12px 0
+		max-width: 1200px
+		fill: #616161
+		line
+			stroke: #616161
+		g.bar
+			line
+				stroke: #f5f5f5
+			rect
+				fill: #00BCD4
+		g.bar:hover,g.bar:nth-child(3)
+			line
+				stroke: #ff4081
+			rect,circle,text
+				fill: #ff4081	
+	

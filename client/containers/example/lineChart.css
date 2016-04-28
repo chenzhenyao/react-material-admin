@@ -1,0 +1,16 @@
+.f-example-line-chart
+	margin-top: 24px
+	.line-chart-wrap
+		svg
+			margin-bottom: -4px
+			path:nth-child(1)
+				fill: rgba(3, 169, 244, 0.32)
+			path:nth-child(2)
+				fill: rgba(3, 169, 244, 0.68)
+			rect
+				fill: rgba(255, 255, 255, 0)
+				stroke: #F0F0F0
+				stroke-width: 0.5
+			rect:hover
+				fill: rgba(255, 255, 255, 0.5)
+			

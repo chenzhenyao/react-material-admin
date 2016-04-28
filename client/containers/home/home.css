@@ -1,0 +1,8 @@
+@media (min-width: 1500px)
+	#f-demo-home
+		.main
+			float: left
+			width: calc(100% - 350px)
+		.left
+			float: right
+			width: 320px
