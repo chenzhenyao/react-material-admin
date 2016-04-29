@@ -19,7 +19,11 @@ import Yard from './containers/base/Yard'
 import Login from './containers/auth/Login'
 import Home from './containers/home/Home'
 
+import BarChart from './containers/example/BarChart'
+import LineChart from './containers/example/LineChart'
 import List from './containers/example/List'
+import Tabs from './containers/example/Tabs'
+import TodoList from './containers/example/TodoList'
 
 injectTapEventPlugin()
 
@@ -29,6 +33,8 @@ const store = createStoreWithMiddleware(reducers)
 
 function requestAuth(location, replaceWith) {
 	console.log('auth...')
+	const { auth } = store.getState()
+	if (!auth.token) replaceWith(null, '/login')
 }
 
 let rooEl = document.createElement('div')
@@ -40,7 +46,13 @@ ReactDOM.render((
 			<Route component={Global}>
 				<Route component={Yard} onEnter={requestAuth}>
 					<Route path="/" component={Home} />
-					<Route path="/list" component={List} />
+					<Route path="/example">
+						<Route path="bar-chart" component={BarChart} />
+						<Route path="line-chart" component={LineChart} />
+						<Route path="list" component={List} />
+						<Route path="tabs" component={Tabs} />
+						<Route path="todo-list" component={TodoList} />
+					</Route>
 				</Route>
 				<Route path="/login" component={Login} />
 			</Route>

@@ -43,16 +43,20 @@ const navItems = [{
 	text: 'Home',
 	value: '/'
 }, {
+	text: 'Bar Chart',
+	value: '/example/bar-chart'
+}, {
+	text: 'List Chart',
+	value: '/example/line-chart'
+}, {
 	text: 'List',
-	value: '/list'
+	value: '/example/list'
+}, {
+	text: 'Tabs',
+	value: '/example/tabs'
 },{
-	text: 'Bar Chart'
-}, {
-	text: 'Line Chart'
-}, {
-	text: 'Pie Chart'
-}, {
-	text: 'Area Chart'
+	text: 'Todo List',
+	value: '/example/todo-list'
 }]
 
 @connect(state => ({
