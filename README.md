@@ -1,6 +1,8 @@
 # react-material-admin
 Material design admin powerd by React
 
+[Demo](http://chenzhenyao.github.io/react-material-admin)
+
 ![image](https://github.com/chenzhenyao/react-material-admin/blob/master/public/img/snapshoot-1.png)
 
 ### technologies
