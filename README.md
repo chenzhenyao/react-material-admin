@@ -10,6 +10,7 @@ Material design admin powerd by React
 * [Material-ui](http://www.material-ui.com)
 * [React](https://github.com/facebook/react)
 * [Redux](https://github.com/rackt/redux)'s futuristic Flux implementation
+* [Immutable](https://facebook.github.io/immutable-js/)
 * [Express](http://expressjs.com)
 * [Babel](http://babeljs.io) for ES6 and ES7 magic
 * [Webpack](http://webpack.github.io) for bundling

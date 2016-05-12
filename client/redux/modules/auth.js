@@ -28,14 +28,12 @@ export function login({userName, password}) {
 			})
 			.then(({ data = {} }) => {
 				storage.set('@@auth', data)
-				console.log('123')
 				dispatch({
 					type: LOGIN_SUCCESS,
 					data: data
 				})
 				dispatch(routeActions.push('/'))
 			})
-			.catch(() => {})
 	}
 }
 
