@@ -43,6 +43,7 @@ class Login extends React.Component {
 			},
 			handleSubmit
 		} = this.props
+		
     return (
 			<Paper style={styles.paper} zDepth={3}>
 				<form onSubmit={handleSubmit(submit)}>

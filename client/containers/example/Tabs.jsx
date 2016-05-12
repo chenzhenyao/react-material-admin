@@ -1,12 +1,10 @@
 import './tabs.css'
 import React from 'react'
-import {
-	Paper,
-	Toolbar,
-	ToolbarTitle,
-	Tabs,
-	Tab,
-} from 'material-ui'
+import Paper from 'material-ui/lib/paper'
+import Toolbar from 'material-ui/lib/toolbar/toolbar'
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title'
+import Tab from 'material-ui/lib/tabs/tab'
+import Tabs from 'material-ui/lib/tabs/tabs'
 
 let dependencies = [{
 	logo: '/img/stylus.png',

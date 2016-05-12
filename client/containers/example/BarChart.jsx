@@ -1,10 +1,8 @@
 import './barChart.css'
 import React from 'react'
-import {
-	Paper,
-	Toolbar,
-	ToolbarTitle,
-} from 'material-ui'
+import Paper from 'material-ui/lib/paper'
+import Toolbar from 'material-ui/lib/toolbar/toolbar'
+import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title'
 import d3 from 'd3'
 
 export default class Home extends React.Component {

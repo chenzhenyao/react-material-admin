@@ -34,7 +34,7 @@ const store = createStoreWithMiddleware(reducers)
 function requestAuth(location, replaceWith) {
 	console.log('auth...')
 	const { auth } = store.getState()
-	if (!auth.token) replaceWith(null, '/login')
+	if (!auth.get('token')) replaceWith(null, '/login')
 }
 
 let rooEl = document.createElement('div')

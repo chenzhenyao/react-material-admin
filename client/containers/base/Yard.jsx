@@ -39,8 +39,8 @@ function HeadPortrait(src) {
 }
 
 @connect(state => ({
-	base: state.base,
-	auth: state.auth,
+	base: state.base.toJS(),
+	auth: state.auth.toJS(),
 }))
 export default class Main extends React.Component {
 	resize = () => {
