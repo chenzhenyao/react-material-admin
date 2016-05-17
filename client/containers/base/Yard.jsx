@@ -43,6 +43,14 @@ function HeadPortrait(src) {
 	auth: state.auth.toJS(),
 }))
 export default class Main extends React.Component {
+	static propTypes = {
+		children: React.PropTypes.object,
+		base: React.PropTypes.object,
+		auth: React.PropTypes.object
+	}
+
+	state = {}
+
 	resize = () => {
 		this.props.dispatch(resize(document.body.offsetWidth || window.innerWidth))
 	}
@@ -53,6 +61,9 @@ export default class Main extends React.Component {
 		this.props.dispatch(logout())
 	}
 
+	constructor(props) {
+		super(props)
+	}
 	componentDidMount() {
 		window.addEventListener('resize', this.resize)
 	}
@@ -72,8 +83,9 @@ export default class Main extends React.Component {
 			content: {}
 		}
 
-		let { base, auth, route, children } = this.props
+		let { base = {}, auth = {}, children } = this.props
 		let { navOpen, screenWidth } = base
+		let { headPortrait } = auth
 		let docked = false
 
 		if (screenWidth > 992) {
@@ -94,7 +106,7 @@ export default class Main extends React.Component {
 					onLeftIconButtonTouchTap={this.toggleNavOpen}
 					iconElementRight={
 						<div>
-							{HeadPortrait(auth.headPortrait)}
+							{HeadPortrait(headPortrait)}
 							<IconMenu 
 								zDepth={2}
 								anchorOrigin={{horizontal: 'right', vertical: 'top'}}
