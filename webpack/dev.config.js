@@ -28,8 +28,14 @@ module.exports = {
 		}]
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			__LOG__: true,
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
+      }
+    }),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoErrorsPlugin(),
 	]
 }
