@@ -1,5 +1,5 @@
 'use strict'
 
 module.exports = (app) => {
-	app.route('/').get((req, res) => res.render('index'))
+	app.route('*').get((req, res) => res.render('index'))
 }

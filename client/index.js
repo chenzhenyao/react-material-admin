@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import { Router, Route } from 'react-router'
-import createHistory from 'history/lib/createHashHistory'
+import { browserHistory } from 'react-router'
 
 import { syncHistory } from 'react-router-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -27,8 +27,7 @@ import TodoList from './containers/example/TodoList'
 
 injectTapEventPlugin()
 
-const history = createHistory({queryKey: false})
-const createStoreWithMiddleware = applyMiddleware(syncHistory(history), thunkMiddleware, loggerMiddleware)(createStore)
+const createStoreWithMiddleware = applyMiddleware(syncHistory(browserHistory), thunkMiddleware, loggerMiddleware)(createStore)
 const store = createStoreWithMiddleware(reducers)
 
 function requestAuth(location, replaceWith) {
@@ -42,7 +41,7 @@ document.body.appendChild(rooEl)
 
 ReactDOM.render((
 	<Provider store={store}>
-		<Router history={history}>
+		<Router history={browserHistory}>
 			<Route component={Global}>
 				<Route component={Yard} onEnter={requestAuth}>
 					<Route path="/" component={Home} />
