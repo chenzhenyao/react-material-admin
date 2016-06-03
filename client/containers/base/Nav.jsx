@@ -57,6 +57,9 @@ const navItems = [{
 },{
 	text: 'Todo List',
 	value: '/example/todo-list'
+},{
+	text: 'Crop Box',
+	value: '/example/crop-box'
 }]
 
 @connect(state => ({
