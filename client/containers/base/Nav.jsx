@@ -1,14 +1,11 @@
 import React from 'react'
-
-import List from 'material-ui/lib/lists/list'
-import ListItem from 'material-ui/lib/lists/list-item'
-import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance'
+import { List, ListItem, MakeSelectable } from 'material-ui/List'
 
 import { connect } from 'react-redux'
 import { closeNav } from '../../redux/modules/base'
 import { push } from 'react-router-redux'
 
-const SelectableList = SelectableContainerEnhance(List)
+let SelectableList = MakeSelectable(List)
 
 const navItems = [{
 	text: 'Charts',
@@ -93,19 +90,18 @@ export default class Nav extends React.Component {
 
 	render() {
 		let { route = {} } = this.props
+		console.log(route)
 		return (
-			<SelectableList
-				valueLink={{
-					value: route.location.pathname,
-					requestChange: this.handleRequestChangeList
-				}}
+			<SelectableList 
+				value={route.location.pathname}
+				onChange={this.handleRequestChangeList}
 				selectedItemStyle={{
 					backgroundColor: 'rgba(0,0,0,0.2)',
 					color: 'rgb(255, 64, 129)'
 				}}
 			>
 				{this.renderNav(navItems)}
-			</SelectableList>
+			</SelectableList >
 		)
 	}
 }

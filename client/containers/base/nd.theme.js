@@ -1,26 +1,36 @@
-import Colors from 'material-ui/lib/styles/colors'
-import ColorManipulator from 'material-ui/lib/utils/color-manipulator'
-import Spacing from 'material-ui/lib/styles/spacing'
-import zIndex from 'material-ui/lib/styles/zIndex'
+import {
+  cyan500, 
+  cyan700,
+  pinkA200,
+  grey100, 
+  grey300, 
+  grey400, 
+  grey500,
+  white, 
+  darkBlack, 
+  fullBlack,
+}  from 'material-ui/styles/colors'
+import spacing from 'material-ui/styles/spacing'
+import zIndex from 'material-ui/styles/zIndex'
+import { fade } from 'material-ui/utils/colorManipulator'
 
 export default {
-  spacing: Spacing,
-  zIndex: zIndex,
+  spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: Colors.cyan500,
-    primary2Color: Colors.cyan700,
-    primary3Color: Colors.grey400,
-    accent1Color: Colors.pinkA200,
-    accent2Color: Colors.grey100,
-    accent3Color: Colors.grey500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.white,
-    canvasColor: Colors.white,
-    borderColor: Colors.grey300,
-    disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
-    pickerHeaderColor: Colors.cyan500,
-    clockCircleColor: ColorManipulator.fade(Colors.darkBlack, 0.07),
-    shadowColor: Colors.fullBlack,
-  }
-}
+    primary1Color: cyan500,
+    primary2Color: cyan700,
+    primary3Color: grey400,
+    accent1Color: pinkA200,
+    accent2Color: grey100,
+    accent3Color: grey500,
+    textColor: darkBlack,
+    alternateTextColor: white,
+    canvasColor: white,
+    borderColor: grey300,
+    disabledColor: fade(darkBlack, 0.3),
+    pickerHeaderColor: cyan500,
+    clockCircleColor: fade(darkBlack, 0.07),
+    shadowColor: fullBlack,
+  },
+};

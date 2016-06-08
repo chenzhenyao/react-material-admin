@@ -25,6 +25,7 @@ import LineChart from './containers/example/LineChart'
 import List from './containers/example/List'
 import Tabs from './containers/example/Tabs'
 import TodoList from './containers/example/TodoList'
+import X from './containers/example/X'
 
 injectTapEventPlugin()
 
@@ -53,6 +54,7 @@ ReactDOM.render((
 						<Route path="list" component={List} />
 						<Route path="tabs" component={Tabs} />
 						<Route path="todo-list" component={TodoList} />
+						<Route path="x" component={X} />
 					</Route>
 				</Route>
 				<Route path="/login" component={Login} />

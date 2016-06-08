@@ -2,15 +2,15 @@ import './yard.css'
 import React from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
 
-import AppBar from 'material-ui/lib/app-bar'
-import Divider from 'material-ui/lib/divider'
-import LeftNav from 'material-ui/lib/left-nav'
-import List from 'material-ui/lib/lists/list'
-import ListItem from 'material-ui/lib/lists/list-item'
-import IconMenu from 'material-ui/lib/menus/icon-menu'
-import IconButton from 'material-ui/lib/icon-button'
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert'
-import MenuItem from 'material-ui/lib/menus/menu-item'
+import AppBar from 'material-ui/AppBar'
+import IconButton from 'material-ui/IconButton'
+import IconMenu from 'material-ui/IconMenu'
+import MenuItem from 'material-ui/MenuItem'
+import Divider from 'material-ui/Divider'
+import Subheader from 'material-ui/Subheader'
+import Drawer from 'material-ui/Drawer'
+import { List, ListItem } from 'material-ui/List'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 
 import Nav from './Nav'
 
@@ -70,7 +70,6 @@ export default class Main extends React.Component {
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.resize)
 	}
-
 	render() {
 		let styles = {
 			appBar: {
@@ -122,8 +121,8 @@ export default class Main extends React.Component {
 						</div>
 					}					
 				/>
-				<LeftNav
-					style={styles.nav}
+				<Drawer
+					containerStyle={styles.nav}
 					docked={docked}
 					open={docked || navOpen}
 					onRequestChange={this.toggleNavOpen}
@@ -135,11 +134,12 @@ export default class Main extends React.Component {
 					>
 						<Nav />
 						<Divider />
-						<List subheader="Help">
+						<List>
+							<Subheader>Help</Subheader>
           		<ListItem primaryText="GitHub" value="https://github.com/callemall/material-ui" />
           	</List>
 		      </Scrollbars>
-        </LeftNav>
+        </Drawer>
 				<div id="f-global-content" style={styles.content}>
 					{children}
 				</div>

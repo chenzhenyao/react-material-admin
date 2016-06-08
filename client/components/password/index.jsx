@@ -1,8 +1,8 @@
 import React from 'react'
-import TextField from 'material-ui/lib/TextField'
-import IconButton from 'material-ui/lib/icon-button'
-import ActionVisibility from 'material-ui/lib/svg-icons/action/visibility'
-import ActionVisibilityOff from 'material-ui/lib/svg-icons/action/visibility-off'
+import TextField from 'material-ui/TextField'
+import IconButton from 'material-ui/IconButton'
+import ActionVisibility from 'material-ui/svg-icons/action/visibility'
+import ActionVisibilityOff from 'material-ui/svg-icons/action/visibility-off'
 
 export default class Password extends React.Component {
 	state = {

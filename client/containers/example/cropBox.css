@@ -1,0 +1,9 @@
+.dropzone.dz-clickable
+	margin: 24px auto
+	min-height: 150px
+	max-width: 600px
+	border: 2px dashed #0087F7
+	border-radius: 3px
+	.dz-message
+		display: none
+	

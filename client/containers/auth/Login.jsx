@@ -1,14 +1,13 @@
 import React from 'react'
 import V from 'validator'
 import LinkedStateMixin from 'react/lib/LinkedStateMixin'
+import Paper from 'material-ui/Paper'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
+
 import { alert } from '../../components/alarm'
-
-import Paper from 'material-ui/lib/paper'
-import TextField from 'material-ui/lib/TextField'
 import Password from '../../components/password'
-import RaisedButton from 'material-ui/lib/raised-button'
 
-import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { login } from '../../redux/modules/auth'
 

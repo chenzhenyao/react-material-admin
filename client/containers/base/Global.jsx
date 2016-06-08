@@ -1,11 +1,16 @@
 import React from 'react'
-import ThemeDecorator from 'material-ui/lib/styles/theme-decorator'
-import ThemeManager from 'material-ui/lib/styles/theme-manager'
-import MyRawTheme from './nd.theme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import ndTheme from './nd.theme'
 
-@ThemeDecorator(ThemeManager.getMuiTheme(MyRawTheme))
+const theme = getMuiTheme(ndTheme)
+
 export default class Global extends React.Component {
 	render() {
-		return <div>{this.props.children}</div>
+		return (
+			<MuiThemeProvider muiTheme={theme}>
+				{this.props.children}
+			</MuiThemeProvider>
+		)
 	}
 }
