@@ -13,30 +13,29 @@ import { List, ListItem } from 'material-ui/List'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 
 import Nav from './Nav'
+import HeadPortrait from './HeadPortrait'
 
 import { connect } from 'react-redux'
 import { resize, toggleNavOpen } from '../../redux/modules/base'
 import { logout } from '../../redux/modules/auth'
 
-function HeadPortrait(src) {
-	return (
-		<div 
-			style={{
-				display: 'inline-block',
-				padding: 6,
-				verticalAlign: 'bottom'
-			}}
-		>
-			<div style={{
-				width: 36,
-				height: 36,
-				borderRadius: '50%',
-				background: `url(${src}) no-repeat center center`,
-				backgroundSize: 'cover'
-			}} />
-		</div>
-	)
-}
+// function HeadPortrait(src) {
+// 	return (
+// 		<div style={{
+// 			display: 'inline-block',
+// 			padding: 6,
+// 			verticalAlign: 'bottom'
+// 		}}>
+// 			<div style={{
+// 				width: 36,
+// 				height: 36,
+// 				borderRadius: '50%',
+// 				background: `url(${src}) no-repeat center center`,
+// 				backgroundSize: 'cover'
+// 			}} />
+// 		</div>
+// 	)
+// }
 
 @connect(state => ({
 	base: state.base.toJS(),
@@ -105,7 +104,7 @@ export default class Main extends React.Component {
 					onLeftIconButtonTouchTap={this.toggleNavOpen}
 					iconElementRight={
 						<div>
-							{HeadPortrait(headPortrait)}
+							<HeadPortrait image={headPortrait} />
 							<IconMenu 
 								anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 	      				targetOrigin={{horizontal: 'right', vertical: 'top'}}

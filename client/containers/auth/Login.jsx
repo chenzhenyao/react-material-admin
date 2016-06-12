@@ -61,8 +61,8 @@ class Login extends React.Component {
 	        <RaisedButton 
 						label="登录"  
 						secondary
-						fullWidth
-						style={{margin: '24px 0 16px'}} 
+						fullWidth={true}
+						style={{width: '100%', margin: '24px 0 16px'}} 
 						type="submit" 
 					/>
 				</form>

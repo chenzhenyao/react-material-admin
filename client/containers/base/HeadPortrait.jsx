@@ -7,14 +7,22 @@ import Slider from 'material-ui/Slider'
 import AvatarEditor from '../../components/react-avatar-editor'
 
 export default class CropBoxExample extends React.Component {
+	static propTypes = {
+		image: React.PropTypes.string
+	}
+	static defaultProps = {
+		image: ''
+	}
 	state = {
 		open: false,
-		image: '',
+		file: '',
 		scale: 1
 	}
+
 	open = () => this.setState({open: true})
 	close = () => this.setState({open: false})
-	reset = () => this.setState({image: ''})
+	reset = () => this.setState({file: ''})
+	changeScale = (e, value) => this.setState({scale: value})
 	changeFile = (e) => {
 		let reader = new FileReader()
 		let file = e.target.files[0]
@@ -23,26 +31,46 @@ export default class CropBoxExample extends React.Component {
 
     reader.onload = (img) => {
     	this.setState({
-    		image: img.target.result
+    		file: img.target.result
     	})
     }
     reader.readAsDataURL(file)
 	}
-	changeScale = (e, value) => {
-		this.setState({
-			scale: value
+	upload = (e) => {
+		let canvas = this.refs.avatarEditor.getImage()
+		canvas.toBlob((blob) => {
+			console.log(blob)
+			console.log(arguments)
 		})
 	}
+
 	render() {
-		let { open, image, scale } = this.state
+		let { image } = this.props
+		let { open, file, scale } = this.state
 		let actions = [
 			<FlatButton label="取消" primary onTouchTap={this.close} />,
 			<FlatButton label="重置" primary onTouchTap={this.reset} />,
-			<FlatButton label="确认" primary />
+			<FlatButton label="确认" primary onTouchTap={this.upload} />
 		]
 		return (
-			<div>
-				<FlatButton label="Dialog" onTouchTap={this.open} />
+			<span>
+				<div 
+					style={{
+						display: 'inline-block',
+						padding: 6,
+						verticalAlign: 'bottom',
+						cursor: 'pointer'
+					}}
+					onTouchTap={this.open}
+				>
+					<div style={{
+						width: 36,
+						height: 36,
+						borderRadius: '50%',
+						background: `url(${image}) no-repeat center center`,
+						backgroundSize: 'cover'
+					}} />
+				</div>
 				<Dialog
 					title="修改头像"
 					contentStyle={{maxWidth: 600}}
@@ -63,9 +91,10 @@ export default class CropBoxExample extends React.Component {
 						height: 400,
 						margin: '42px auto',
 					}}>
-						{image ? 
+						{file ? 
 							<AvatarEditor
-				        image={image}
+								ref="avatarEditor"
+				        image={file}
 				        width={340}
 				        height={340}
 				        border={30}
@@ -101,7 +130,7 @@ export default class CropBoxExample extends React.Component {
 						onChange={this.changeScale}
 					/>
 				</Dialog>
-			</div>
+			</span>
 		)
 	}
 }
