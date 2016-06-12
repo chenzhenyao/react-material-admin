@@ -107,7 +107,6 @@ export default class Main extends React.Component {
 						<div>
 							{HeadPortrait(headPortrait)}
 							<IconMenu 
-								zDepth={2}
 								anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 	      				targetOrigin={{horizontal: 'right', vertical: 'top'}}
 								iconButtonElement={

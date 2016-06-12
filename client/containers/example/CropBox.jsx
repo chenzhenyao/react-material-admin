@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import FlatButton from 'material-ui/FlatButton'
 import AddIcon from 'material-ui/svg-icons/content/add'
 import Slider from 'material-ui/Slider'
-import AvatarEditor from 'react-avatar-editor'
+import AvatarEditor from '../../components/react-avatar-editor'
 
 export default class CropBoxExample extends React.Component {
 	state = {

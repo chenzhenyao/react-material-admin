@@ -70,7 +70,6 @@ class TodoList extends React.Component {
 					<ToolbarTitle text="Todo List" />
 					<ToolbarGroup float="right">
 						<IconMenu 
-							zDepth={2}
 							anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       				targetOrigin={{horizontal: 'right', vertical: 'top'}}
       				style={{marginTop: 4}}
@@ -97,7 +96,6 @@ class TodoList extends React.Component {
 									onCheck={this.toggleTodo.bind(null, item.id)}
 								/>
 								<IconMenu 
-									zDepth={2}
 									anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 		      				targetOrigin={{horizontal: 'right', vertical: 'top'}}
 		      				style={{position: 'absolute', top: 0, right: 0}}
