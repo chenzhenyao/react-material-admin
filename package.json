@@ -4,7 +4,7 @@
   "description": "admin",
   "main": "server/index.js",
   "scripts": {
-    "debug": "node-debug server/index.js",
+    "debug": "node-debug -p 8081 server/index.js",
     "dev": "set NODE_ENV=development&& nodemon --watch server --watch webpack server/index.js",
     "build": "webpack --progress --colors --config webpack/pro.config.js",
     "prestart": "npm run build",
@@ -19,6 +19,7 @@
     "consolidate": "^0.13.1",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
+    "formidable": "^1.0.17",
     "http-proxy-middleware": "^0.9.1",
     "log4js": "^0.6.33",
     "morgan": "^1.7.0",

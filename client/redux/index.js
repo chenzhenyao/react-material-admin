@@ -4,13 +4,15 @@ import { reducer as form} from 'redux-form'
 
 import auth, { LOGOUT } from './modules/auth'
 import base from './modules/base'
+import profile from './modules/profile'
 import todo from './modules/todo'
 
 const appReducer = combineReducers({
 	auth,
 	base,
-	route,
 	form,
+	profile,
+	route,
 	todo,
 })
 

@@ -13,39 +13,19 @@ import { List, ListItem } from 'material-ui/List'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 
 import Nav from './Nav'
-import HeadPortrait from './HeadPortrait'
+import Profile from '../user/Profile'
 
 import { connect } from 'react-redux'
 import { resize, toggleNavOpen } from '../../redux/modules/base'
 import { logout } from '../../redux/modules/auth'
 
-// function HeadPortrait(src) {
-// 	return (
-// 		<div style={{
-// 			display: 'inline-block',
-// 			padding: 6,
-// 			verticalAlign: 'bottom'
-// 		}}>
-// 			<div style={{
-// 				width: 36,
-// 				height: 36,
-// 				borderRadius: '50%',
-// 				background: `url(${src}) no-repeat center center`,
-// 				backgroundSize: 'cover'
-// 			}} />
-// 		</div>
-// 	)
-// }
-
 @connect(state => ({
-	base: state.base.toJS(),
-	auth: state.auth.toJS(),
+	base: state.base.toJS()
 }))
 export default class Main extends React.Component {
 	static propTypes = {
 		children: React.PropTypes.object,
-		base: React.PropTypes.object,
-		auth: React.PropTypes.object
+		base: React.PropTypes.object
 	}
 
 	state = {}
@@ -81,9 +61,8 @@ export default class Main extends React.Component {
 			content: {}
 		}
 
-		let { base = {}, auth = {}, children } = this.props
+		let { base = {}, children } = this.props
 		let { navOpen, screenWidth } = base
-		let { headPortrait } = auth
 		let docked = false
 
 		if (screenWidth > 992) {
@@ -104,7 +83,7 @@ export default class Main extends React.Component {
 					onLeftIconButtonTouchTap={this.toggleNavOpen}
 					iconElementRight={
 						<div>
-							<HeadPortrait image={headPortrait} />
+							<Profile />
 							<IconMenu 
 								anchorOrigin={{horizontal: 'right', vertical: 'top'}}
 	      				targetOrigin={{horizontal: 'right', vertical: 'top'}}

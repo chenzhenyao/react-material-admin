@@ -1,4 +1,7 @@
 'use strict'
+const path = require('path')
+const fs = require('fs')
+const formidable = require('formidable')
 
 module.exports = function(app) {
 	app.route('/api/login').post((req, res) => {
@@ -10,7 +13,8 @@ module.exports = function(app) {
 				data: {
 					token: 'e10adc3949ba59abbe56e057f20f883e',
 					name: 'fikman',
-					headPortrait: '/img/head-portrait.jpg'
+					profilePicture: '/img/profile.png',
+					headPortrait: '/img/profile.png'
 				}
 			})
 		} else {
@@ -20,5 +24,18 @@ module.exports = function(app) {
 				data: {}
 			})
 		}
+	})
+	app.route('/api/uploadProfile').post((req, res) => {
+		let form = new formidable.IncomingForm()
+		form.on('file', (name, file) => {
+			let read = fs.createReadStream(file.path)
+			let write = fs.createWriteStream(path.join(__dirname, '../../public/img/profile.png'))
+			read.pipe(write)
+			res.send({
+				code: 0,
+				msg: ''
+			})
+		})
+		form.parse(req)
 	})
 }

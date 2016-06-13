@@ -6,51 +6,57 @@ import UploadIcon from 'material-ui/svg-icons/file/file-upload'
 import Slider from 'material-ui/Slider'
 import AvatarEditor from '../../components/react-avatar-editor'
 
+import { connect } from 'react-redux'
+import * as profileActions from '../../redux/modules/profile'
+
+@connect(
+	state => ({
+		auth: state.auth.toJS(),
+		profile: state.profile.toJS()
+	}),
+	profileActions
+)
 export default class CropBoxExample extends React.Component {
 	static propTypes = {
-		image: React.PropTypes.string
+		auth: React.PropTypes.object,
+		profile: React.PropTypes.object,
+		openDialog: React.PropTypes.func,
+		closeDialog: React.PropTypes.func,
+		setScale: React.PropTypes.func,
+		setPicture: React.PropTypes.func,
+		uploadProfile: React.PropTypes.func,
 	}
-	static defaultProps = {
-		image: ''
+	handleSliderChange = (e, value) => {
+		this.props.setScale(value)
 	}
-	state = {
-		open: false,
-		file: '',
-		scale: 1
-	}
-
-	open = () => this.setState({open: true})
-	close = () => this.setState({open: false})
-	reset = () => this.setState({file: ''})
-	changeScale = (e, value) => this.setState({scale: value})
-	changeFile = (e) => {
+	handleFileChange = (e) => {
 		let reader = new FileReader()
 		let file = e.target.files[0]
-
     if (!file) return;
 
-    reader.onload = (img) => {
-    	this.setState({
-    		file: img.target.result
-    	})
-    }
+    reader.onload = (img) => this.props.setPicture(img.target.result)
     reader.readAsDataURL(file)
 	}
-	upload = (e) => {
+	handleReset = (e) => {
+		this.props.setPicture('')
+	}
+	handleSubmit = (e) => {
 		let canvas = this.refs.avatarEditor.getImage()
 		canvas.toBlob((blob) => {
-			console.log(blob)
-			console.log(arguments)
+			this.props.uploadProfile(blob)
+			this.props.closeDialog()
 		})
 	}
 
 	render() {
-		let { image } = this.props
-		let { open, file, scale } = this.state
+		let { profilePicture } = this.props.auth
+		let { open, scale, picture } = this.props.profile
+		let { openDialog, closeDialog, setScale } = this.props
+
 		let actions = [
-			<FlatButton label="取消" primary onTouchTap={this.close} />,
-			<FlatButton label="重置" primary onTouchTap={this.reset} />,
-			<FlatButton label="确认" primary onTouchTap={this.upload} />
+			<FlatButton label="取消" primary onTouchTap={closeDialog} />,
+			<FlatButton label="重置" primary onTouchTap={this.handleReset} />,
+			<FlatButton label="确认" primary onTouchTap={this.handleSubmit} />
 		]
 		return (
 			<span>
@@ -61,13 +67,13 @@ export default class CropBoxExample extends React.Component {
 						verticalAlign: 'bottom',
 						cursor: 'pointer'
 					}}
-					onTouchTap={this.open}
+					onTouchTap={openDialog}
 				>
 					<div style={{
 						width: 36,
 						height: 36,
 						borderRadius: '50%',
-						background: `url(${image}) no-repeat center center`,
+						background: `url(${profilePicture}) no-repeat center center`,
 						backgroundSize: 'cover'
 					}} />
 				</div>
@@ -77,24 +83,24 @@ export default class CropBoxExample extends React.Component {
 					autoScrollBodyContent
 					actions={actions}
 					open={open}
-					onRequestClose={this.close}
+					onRequestClose={closeDialog}
 				>	
 					<input
 						id="upload-portrait"
 						style={{ display: 'none'}}
 						type="file" 
 						accept="image/*"
-						onChange={this.changeFile}
+						onChange={this.handleFileChange}
 					/>
 					<div style={{
 						width: 400,
 						height: 400,
 						margin: '42px auto',
 					}}>
-						{file ? 
+						{picture ? 
 							<AvatarEditor
 								ref="avatarEditor"
-				        image={file}
+				        image={picture}
 				        width={340}
 				        height={340}
 				        border={30}
@@ -127,7 +133,7 @@ export default class CropBoxExample extends React.Component {
 						min={1}
 						max={3}
 						value={scale}
-						onChange={this.changeScale}
+						onChange={this.handleSliderChange}
 					/>
 				</Dialog>
 			</span>
