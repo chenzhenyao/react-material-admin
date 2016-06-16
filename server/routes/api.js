@@ -12,9 +12,7 @@ module.exports = function(app) {
 				msg: '',
 				data: {
 					token: 'e10adc3949ba59abbe56e057f20f883e',
-					name: 'fikman',
-					profilePicture: '/img/profile.png',
-					headPortrait: '/img/profile.png'
+					name: 'fikman'
 				}
 			})
 		} else {
@@ -24,6 +22,15 @@ module.exports = function(app) {
 				data: {}
 			})
 		}
+	})
+	app.route('/api/getUserInfo').post((req, res) => {
+		res.send({
+			code:0,
+			msg: '',
+			data: {
+				profilePicture: '/img/profile.png?' + new Date().getTime(),
+			}
+		})
 	})
 	app.route('/api/uploadProfile').post((req, res) => {
 		let form = new formidable.IncomingForm()

@@ -1,14 +1,16 @@
 import Immutable from 'immutable'
 import { createReducer } from 'redux-immutablejs'
-import apiClient from '../../helper/apiClient'
+import apiClient from '../../../helper/apiClient'
+import { getUserInfo } from './info'
 
-const OPEN_DIALOG = '@@profile/OPEN_DIALOG'
-const CLOSE_DIALOG = '@@profile/CLOSE_DIALOG'
-const SET_SCALE = '@@profile/SET_SCALE'
-const SET_PICTURE =  '@@profile/SET_PICTURE'
-const UPLOAD_PROFIEL = '@@profile/UPLOAD_PROFIEL'
-const UPLOAD_PROFIEL_SUCCESS = '@@profile/UPLOAD_PROFIEL_SUCCESS'
-const UPLOAD_PROFIEL_FAIL = '@@profile/UPLOAD_PROFIEL_FAIL'
+const P = '@user/profile/'
+const OPEN_DIALOG = P + 'OPEN_DIALOG'
+const CLOSE_DIALOG = P + 'CLOSE_DIALOG'
+const SET_SCALE = P + 'SET_SCALE'
+const SET_PICTURE =  P + 'SET_PICTURE'
+const UPLOAD_PROFIEL = P + 'UPLOAD_PROFIEL'
+const UPLOAD_PROFIEL_SUCCESS = P + 'UPLOAD_PROFIEL_SUCCESS'
+const UPLOAD_PROFIEL_FAIL = P + 'UPLOAD_PROFIEL_FAIL'
 
 const initialState = Immutable.fromJS({
 	open: false,
@@ -60,6 +62,7 @@ export function uploadProfile(blob) {
 			dispatch({
 				type: UPLOAD_PROFIEL_SUCCESS
 			})
+			dispatch(getUserInfo())
 		})
 		.catch(() => {
 			dispatch({

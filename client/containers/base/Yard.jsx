@@ -16,38 +16,29 @@ import Nav from './Nav'
 import Profile from '../user/Profile'
 
 import { connect } from 'react-redux'
-import { resize, toggleNavOpen } from '../../redux/modules/base'
-import { logout } from '../../redux/modules/auth'
+import { resize, toggleNavOpen } from '../../redux/modules/base/yard'
+import { logout } from '../../redux/modules/user/auth'
 
-@connect(state => ({
-	base: state.base.toJS()
-}))
+@connect(
+	state => ({
+		base: state.base.yard.toJS()
+	}),
+	{ resize, toggleNavOpen, logout }
+)
 export default class Main extends React.Component {
 	static propTypes = {
 		children: React.PropTypes.object,
 		base: React.PropTypes.object
-	}
-
-	state = {}
-
-	resize = () => {
-		this.props.dispatch(resize(document.body.offsetWidth || window.innerWidth))
-	}
-	toggleNavOpen = () => {
-		this.props.dispatch(toggleNavOpen())
-	}
-	logout = () => {
-		this.props.dispatch(logout())
-	}
-
-	constructor(props) {
-		super(props)
 	}
 	componentDidMount() {
 		window.addEventListener('resize', this.resize)
 	}
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.resize)
+	}
+
+	resize = () => {
+		this.props.resize(document.body.offsetWidth || window.innerWidth)
 	}
 	render() {
 		let styles = {
@@ -61,7 +52,7 @@ export default class Main extends React.Component {
 			content: {}
 		}
 
-		let { base = {}, children } = this.props
+		let { base, children, logout, toggleNavOpen } = this.props
 		let { navOpen, screenWidth } = base
 		let docked = false
 
@@ -80,7 +71,7 @@ export default class Main extends React.Component {
 					style={styles.appBar}
 					title="ADMIN" 
 					showMenuIconButton={!docked}
-					onLeftIconButtonTouchTap={this.toggleNavOpen}
+					onLeftIconButtonTouchTap={toggleNavOpen}
 					iconElementRight={
 						<div>
 							<Profile />
@@ -93,7 +84,7 @@ export default class Main extends React.Component {
 									</IconButton>
 								}
 							>
-								<MenuItem primaryText="退出" onClick={this.logout} />
+								<MenuItem primaryText="退出" onClick={logout} />
 							</IconMenu>
 						</div>
 					}					
@@ -102,7 +93,7 @@ export default class Main extends React.Component {
 					containerStyle={styles.nav}
 					docked={docked}
 					open={docked || navOpen}
-					onRequestChange={this.toggleNavOpen}
+					onRequestChange={toggleNavOpen}
 				>
 					<Scrollbars
 						autoHide

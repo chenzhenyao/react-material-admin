@@ -7,24 +7,28 @@ import Slider from 'material-ui/Slider'
 import AvatarEditor from '../../components/react-avatar-editor'
 
 import { connect } from 'react-redux'
-import * as profileActions from '../../redux/modules/profile'
+import * as userInfoActions from '../../redux/modules/user/info'
+import * as profileActions from '../../redux/modules/user/profile'
 
 @connect(
 	state => ({
-		auth: state.auth.toJS(),
-		profile: state.profile.toJS()
+		userInfo: state.user.info.toJS(),
+		userProfile: state.user.profile.toJS()
 	}),
-	profileActions
+	{	...userInfoActions, ...profileActions }
 )
 export default class CropBoxExample extends React.Component {
 	static propTypes = {
-		auth: React.PropTypes.object,
-		profile: React.PropTypes.object,
+		userInfo: React.PropTypes.object,
+		userProfile: React.PropTypes.object,
 		openDialog: React.PropTypes.func,
 		closeDialog: React.PropTypes.func,
 		setScale: React.PropTypes.func,
 		setPicture: React.PropTypes.func,
 		uploadProfile: React.PropTypes.func,
+	}
+	componentWillMount() {
+		this.props.getUserInfo()
 	}
 	handleSliderChange = (e, value) => {
 		this.props.setScale(value)
@@ -49,8 +53,8 @@ export default class CropBoxExample extends React.Component {
 	}
 
 	render() {
-		let { profilePicture } = this.props.auth
-		let { open, scale, picture } = this.props.profile
+		let { profilePicture } = this.props.userInfo
+		let { open, scale, picture } = this.props.userProfile
 		let { openDialog, closeDialog, setScale } = this.props
 
 		let actions = [
@@ -61,6 +65,7 @@ export default class CropBoxExample extends React.Component {
 		return (
 			<span>
 				<div 
+					id="xxx"
 					style={{
 						display: 'inline-block',
 						padding: 6,
@@ -73,8 +78,10 @@ export default class CropBoxExample extends React.Component {
 						width: 36,
 						height: 36,
 						borderRadius: '50%',
-						background: `url(${profilePicture}) no-repeat center center`,
-						backgroundSize: 'cover'
+						backgroundPosition: 'center',
+						backgroundSize: 'cover',
+						backgroundRepeat: 'no-repeat',
+						backgroundImage: `url(${profilePicture})`
 					}} />
 				</div>
 				<Dialog

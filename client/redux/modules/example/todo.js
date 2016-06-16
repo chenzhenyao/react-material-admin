@@ -1,9 +1,10 @@
 import Immutable from 'immutable'
 import { createReducer } from 'redux-immutablejs'
 
-const ADD = '@@todo/ADD'
-const TOGGLE = '@@todo/TOGGLE'
-const DELETE = '@@todo/DELETE'
+const P = '@example/todo/'
+const ADD = P + 'ADD'
+const TOGGLE = P + 'TOGGLE'
+const DELETE = P + 'DELETE'
 
 const initialState = Immutable.fromJS([{
 	id: 1,

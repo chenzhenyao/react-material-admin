@@ -15,7 +15,7 @@ export default function apiClient({ url, type = 'post', params = {}, data = {}})
 		xhrSet.add(url)
 		nprogress.start()
 
-		const auth = storage.get('@@auth') || {}
+		const auth = storage.get('@auth') || {}
 		const request = superagent[type]('/api/' + url)
 		params.token = auth.token
 		request.query(params)

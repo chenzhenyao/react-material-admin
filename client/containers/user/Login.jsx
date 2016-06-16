@@ -9,7 +9,7 @@ import { alert } from '../../components/alarm'
 import Password from '../../components/password'
 
 import { reduxForm } from 'redux-form'
-import { login } from '../../redux/modules/auth'
+import { login } from '../../redux/modules/user/auth'
 
 const styles = {
 	paper: {

@@ -16,7 +16,7 @@ import reducers from './redux/index'
 
 import Global from './containers/base/Global'
 import Yard from './containers/base/Yard'
-import Login from './containers/auth/Login'
+import Login from './containers/user/Login'
 import Home from './containers/home/Home'
 
 import BarChart from './containers/example/BarChart'
@@ -31,10 +31,10 @@ injectTapEventPlugin()
 const createStoreWithMiddleware = applyMiddleware(syncHistory(browserHistory), thunkMiddleware, loggerMiddleware)(createStore)
 const store = createStoreWithMiddleware(reducers)
 
-function requestAuth(location, replaceWith) {
+function requestAuth(location, replace) {
 	console.log('auth...')
-	const { auth } = store.getState()
-	if (!auth.get('token')) replaceWith(null, '/login')
+	const state = store.getState()
+	if (!state.user.auth.get('token')) replace('/login')
 }
 
 let rooEl = document.createElement('div')

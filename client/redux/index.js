@@ -2,21 +2,19 @@ import { combineReducers } from 'redux'
 import { routeReducer as route } from 'react-router-redux'
 import { reducer as form} from 'redux-form'
 
-import auth, { LOGOUT } from './modules/auth'
-import base from './modules/base'
-import profile from './modules/profile'
-import todo from './modules/todo'
+import base from './modules/base/index'
+import example from './modules/example'
+import user from './modules/user'
 
 const appReducer = combineReducers({
-	auth,
-	base,
-	form,
-	profile,
 	route,
-	todo,
+	form,
+	base,
+	example,
+	user,
 })
 
 export default (state, action) => {
-	if (action.type === LOGOUT) state = void 0
+	if (action.type === 'user/auth/LOGOUT') state = void 0
 	return appReducer(state, action)
 }

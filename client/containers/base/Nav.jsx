@@ -2,7 +2,7 @@ import React from 'react'
 import { List, ListItem, MakeSelectable } from 'material-ui/List'
 
 import { connect } from 'react-redux'
-import { closeNav } from '../../redux/modules/base'
+import { closeNav } from '../../redux/modules/base/yard'
 import { push } from 'react-router-redux'
 
 let SelectableList = MakeSelectable(List)
@@ -56,13 +56,17 @@ const navItems = [{
 	value: '/example/todo-list'
 }]
 
-@connect(state => ({
-	route: state.route,
-}))
+@connect(
+	state => ({
+		route: state.route,
+	}), {
+		push, closeNav
+	}
+)
 export default class Nav extends React.Component {
 	handleRequestChangeList = (event, value = '/') => {
-		this.props.dispatch(push(value))
-		this.props.dispatch(closeNav())
+		this.props.push(value)
+		this.props.closeNav()
 	}
 
 	renderNav = (navItems) => {
@@ -86,8 +90,7 @@ export default class Nav extends React.Component {
 	}
 
 	render() {
-		let { route = {} } = this.props
-		console.log(route)
+		let { route } = this.props
 		return (
 			<SelectableList 
 				value={route.location.pathname}

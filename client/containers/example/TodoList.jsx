@@ -16,7 +16,7 @@ import ActionDone from 'material-ui/svg-icons/action/done'
 
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { addTodo, toggleTodo, deleteTodo } from '../../redux/modules/todo'
+import { addTodo, toggleTodo, deleteTodo } from '../../redux/modules/example/todo'
 
 const styles = {
 	root: {
@@ -130,6 +130,6 @@ export default TodoList = reduxForm({
 		fields: ['todo']
 	},
 	state => ({
-		todoList: state.todo.toJS()
+		todoList: state.example.todo.toJS()
 	})
 )(TodoList)
