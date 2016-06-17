@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { createReducer } from 'redux-immutablejs'
-import apiClient from '../../../helper/apiClient'
+import apiClient from 'helper/apiClient'
 import { getUserInfo } from './info'
 
 const P = '@user/profile/'
@@ -63,11 +63,6 @@ export function uploadProfile(blob) {
 				type: UPLOAD_PROFIEL_SUCCESS
 			})
 			dispatch(getUserInfo())
-		})
-		.catch(() => {
-			dispatch({
-				type: UPLOAD_PROFIEL_FAIL
-			})
 		})
 	}
 }

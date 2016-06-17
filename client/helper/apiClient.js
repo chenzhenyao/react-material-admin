@@ -1,7 +1,7 @@
 import storage from 'simplestorage.js'
 import superagent from 'superagent'
 import nprogress from 'nprogress'
-import { alert } from '../components/alarm'
+import { alert } from 'components/alarm'
 
 nprogress.configure({
 	minimum: 0.618,

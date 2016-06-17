@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { createReducer } from 'redux-immutablejs'
-import apiClient from '../../../helper/apiClient'
+import apiClient from 'helper/apiClient'
 
 const P = '@user/info/'
 const GET_USER_INFO = P + 'GET_USER_INFO'

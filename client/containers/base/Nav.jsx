@@ -2,8 +2,8 @@ import React from 'react'
 import { List, ListItem, MakeSelectable } from 'material-ui/List'
 
 import { connect } from 'react-redux'
-import { closeNav } from '../../redux/modules/base/yard'
 import { push } from 'react-router-redux'
+import { closeNav } from 'store/modules/base/yard'
 
 let SelectableList = MakeSelectable(List)
 

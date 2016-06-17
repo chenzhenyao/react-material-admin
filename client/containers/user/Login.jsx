@@ -5,11 +5,11 @@ import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import { alert } from '../../components/alarm'
-import Password from '../../components/password'
+import { alert } from 'components/alarm'
+import Password from 'components/password'
 
 import { reduxForm } from 'redux-form'
-import { login } from '../../redux/modules/user/auth'
+import { login } from 'store/modules/user/auth'
 
 const styles = {
 	paper: {
@@ -61,7 +61,7 @@ class Login extends React.Component {
 	        <RaisedButton 
 						label="登录"  
 						secondary
-						fullWidth={true}
+						fullWidth
 						style={{width: '100%', margin: '24px 0 16px'}} 
 						type="submit" 
 					/>

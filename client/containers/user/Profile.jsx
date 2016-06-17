@@ -4,11 +4,11 @@ import FlatButton from 'material-ui/FlatButton'
 import AddIcon from 'material-ui/svg-icons/content/add'
 import UploadIcon from 'material-ui/svg-icons/file/file-upload'
 import Slider from 'material-ui/Slider'
-import AvatarEditor from '../../components/react-avatar-editor'
+import AvatarEditor from 'components/react-avatar-editor'
 
 import { connect } from 'react-redux'
-import * as userInfoActions from '../../redux/modules/user/info'
-import * as profileActions from '../../redux/modules/user/profile'
+import * as userInfoActions from 'store/modules/user/info'
+import * as profileActions from 'store/modules/user/profile'
 
 @connect(
 	state => ({
@@ -47,8 +47,8 @@ export default class CropBoxExample extends React.Component {
 	handleSubmit = (e) => {
 		let canvas = this.refs.avatarEditor.getImage()
 		canvas.toBlob((blob) => {
-			this.props.uploadProfile(blob)
 			this.props.closeDialog()
+			this.props.uploadProfile(blob)
 		})
 	}
 

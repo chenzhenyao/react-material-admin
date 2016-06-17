@@ -5,10 +5,11 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&tim
 
 module.exports = {
 	devtool: '#source-map',
+	context: path.join(__dirname, '..'), // absolute path!
 	resolve: {
+    modulesDirectories: ['client', 'node_modules'],
     extensions: ['', '.js', '.jsx']
   },
-	context: path.join(__dirname, '..'), // absolute path!
 	entry: {
 		index: ['./client/index.js', hotMiddlewareScript],
 	},

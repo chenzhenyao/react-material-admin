@@ -3,7 +3,7 @@ import Immutable from 'immutable'
 import storage from 'simplestorage.js'
 import { createReducer } from 'redux-immutablejs'
 import { routeActions } from 'react-router-redux'
-import apiClient from '../../../helper/apiClient'
+import apiClient from 'helper/apiClient'
 
 const P = '@user/auth/'
 const LOGIN = P + 'LOGIN'

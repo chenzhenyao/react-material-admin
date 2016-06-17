@@ -16,8 +16,8 @@ import Nav from './Nav'
 import Profile from '../user/Profile'
 
 import { connect } from 'react-redux'
-import { resize, toggleNavOpen } from '../../redux/modules/base/yard'
-import { logout } from '../../redux/modules/user/auth'
+import { resize, toggleNavOpen } from 'store/modules/base/yard'
+import { logout } from 'store/modules/user/auth'
 
 @connect(
 	state => ({

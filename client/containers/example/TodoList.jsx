@@ -1,6 +1,6 @@
 import React from 'react'
 import V from 'validator'
-import { alert } from '../../components/alarm'
+import { alert } from 'components/alarm'
 
 import Checkbox from 'material-ui/Checkbox'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
@@ -16,7 +16,7 @@ import ActionDone from 'material-ui/svg-icons/action/done'
 
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { addTodo, toggleTodo, deleteTodo } from '../../redux/modules/example/todo'
+import { addTodo, toggleTodo, deleteTodo } from 'store/modules/example/todo'
 
 const styles = {
 	root: {
