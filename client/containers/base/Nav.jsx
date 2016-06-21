@@ -43,9 +43,6 @@ const navItems = [{
 	text: 'Bar Chart',
 	value: '/example/bar-chart'
 }, {
-	text: 'List Chart',
-	value: '/example/line-chart'
-}, {
 	text: 'List',
 	value: '/example/list'
 }, {
