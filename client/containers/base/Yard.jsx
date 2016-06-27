@@ -1,6 +1,6 @@
-import './yard.css'
 import React from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
+import Radium from 'radium'
 
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
@@ -25,6 +25,7 @@ import { logout } from 'store/modules/user/auth'
 	}),
 	{ resize, toggleNavOpen, logout }
 )
+@Radium
 export default class Main extends React.Component {
 	static propTypes = {
 		children: React.PropTypes.object,
@@ -41,15 +42,8 @@ export default class Main extends React.Component {
 		this.props.resize(document.body.offsetWidth || window.innerWidth)
 	}
 	render() {
-		let styles = {
-			appBar: {
-				position: 'fixed',
-				boxShadow: '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
-			},
-			nav: {
-				transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1)',
-			},
-			content: {}
+		let navStyle = {
+			transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1)',
 		}
 
 		let { base, children, logout, toggleNavOpen } = this.props
@@ -58,13 +52,11 @@ export default class Main extends React.Component {
 
 		if (screenWidth > 992) {
 			docked = true
-			styles.nav.zIndex = 1000
-			styles.nav.top = 64
-			styles.nav.paddingBottom = 64
-			styles.nav.boxShadow = 'rgba(0, 0, 0, 0.36) 0px 1px 1px'
-			styles.content.marginLeft = 256
+			navStyle.zIndex = 1000
+			navStyle.top = 64
+			navStyle.paddingBottom = 64
+			navStyle.boxShadow = 'rgba(0, 0, 0, 0.36) 0px 1px 1px'
 		}
-
 		return (
 			<div>
 				<AppBar 
@@ -90,7 +82,7 @@ export default class Main extends React.Component {
 					}					
 				/>
 				<Drawer
-					containerStyle={styles.nav}
+					containerStyle={navStyle}
 					docked={docked}
 					open={docked || navOpen}
 					onRequestChange={toggleNavOpen}
@@ -108,10 +100,39 @@ export default class Main extends React.Component {
           	</List>
 		      </Scrollbars>
         </Drawer>
-				<div id="f-global-content" style={styles.content}>
+				<div style={styles.content}>
 					{children}
 				</div>
 			</div>
 		)
+	}
+}
+
+const styles = {
+	appBar: {
+		position: 'fixed',
+		boxShadow: '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)'
+	},
+	nav: {
+		transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1)',
+		'@media (min-width: 992px)': {
+			zIndex: 1000,
+			top: 64,
+			paddingBottom: 64,
+			boxShadow: 'rgba(0, 0, 0, 0.36) 0px 1px 1px'
+		}
+	},
+	content: {
+		paddingTop: 64,
+		transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1)',
+		'@media (min-width: 768px)': {
+			paddingLeft: 16,
+			paddingRight: 16
+		},
+		'@media (min-width: 992px)': {
+			paddingLeft: 32,
+			paddingRight: 32,
+			marginLeft: 256
+		}
 	}
 }
