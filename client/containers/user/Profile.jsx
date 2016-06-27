@@ -65,7 +65,6 @@ export default class CropBoxExample extends React.Component {
 		return (
 			<span>
 				<div 
-					id="xxx"
 					style={{
 						display: 'inline-block',
 						padding: 6,

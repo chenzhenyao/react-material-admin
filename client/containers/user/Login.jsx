@@ -9,7 +9,7 @@ import { alert } from 'components/alarm'
 import Password from 'components/password'
 
 import { reduxForm } from 'redux-form'
-import { login } from 'store/modules/user/auth'
+import * as authActions from 'store/modules/user/auth'
 
 const styles = {
 	paper: {
@@ -18,22 +18,29 @@ const styles = {
 		margin: '180px auto',
 		background: 'url(/img/logo-nd.png) no-repeat center 40px',
 		backgroundSize: 48,
+	},
+	submitBtn: {
+		width: '100%', 
+		margin: '24px 0 16px'
 	}
 }
 
-const submit = (values, dispatch) => {
-	let {
-		userName = '', password = ''
-	} = values
-	
-	let t = V.isNull(userName) ? '请输入账号' :
-		V.isNull(password) ? '请输入密码' : ''
-
-	if (t) return alert(t);
-	dispatch(login(values))
-}
-
 class Login extends React.Component {
+	static propTypes = {
+		login: React.PropTypes.func
+	}
+	handleSubmit = (values) => {
+		let {
+			userName = '', 
+			password = ''
+		} = values
+		
+		let t = V.isNull(userName) ? '请输入账号' :
+			V.isNull(password) ? '请输入密码' : ''
+
+		if (t) return alert(t);
+		this.props.login(values)
+	}
   render() {
 		const {
 			fields: {
@@ -45,7 +52,7 @@ class Login extends React.Component {
 		
     return (
 			<Paper style={styles.paper} zDepth={3}>
-				<form onSubmit={handleSubmit(submit)}>
+				<form onSubmit={handleSubmit(this.handleSubmit)}>
 					<TextField
 						floatingLabelText="账号"
 						hintText="账号" 
@@ -62,7 +69,7 @@ class Login extends React.Component {
 						label="登录"  
 						secondary
 						fullWidth
-						style={{width: '100%', margin: '24px 0 16px'}} 
+						style={styles.submitBtn} 
 						type="submit" 
 					/>
 				</form>
@@ -74,4 +81,6 @@ class Login extends React.Component {
 export default Login = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
   form: 'login',                           // a unique name for this form
   fields: ['userName', 'password'], // all the fields in your form
+}, null, { 
+	...authActions
 })(Login)
