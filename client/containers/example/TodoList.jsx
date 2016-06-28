@@ -1,7 +1,6 @@
 import React from 'react'
 import V from 'validator'
 import { alert } from 'components/alarm'
-
 import Checkbox from 'material-ui/Checkbox'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import IconButton from 'material-ui/IconButton'
@@ -14,14 +13,17 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import ActionDone from 'material-ui/svg-icons/action/done'
 
-import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { addTodo, toggleTodo, deleteTodo } from 'store/modules/example/todo'
+import * as todoActions from 'store/modules/example/todo'
 
 const styles = {
 	root: {
 		marginTop: 24,
 		paddingBottom: 24,
+	},
+	toolbar: {
+		backgroundColor: '#fff', 
+		borderBottom: '1px solid rgb(224, 224, 224)'
 	},
 	ul: {
 		padding: '12px 24px',
@@ -29,44 +31,37 @@ const styles = {
 	},
 	li: {
 		position: 'relative',
-		padding: '12px 60px 12px 0',
-	},
-	checkbox: {}
-}
-
-const submit = (values, dispatch) => {
-	let { todo = '' } = values
-	let t = V.isNull(todo) ? '请输入代办事项' : ''
-
-	if (t) return alert(t);
-	dispatch(addTodo(todo))
+		padding: '12px 48px 12px 0',
+	}
 }
 
 class TodoList extends React.Component {
+	submit = (values) => {
+		let { todo = '' } = values
+		let t = V.isNull(todo) ? '请输入代办事项' : ''
+
+		if (t) return alert(t);
+		this.props.addTodo(todo)
+	}
 	addTodo = (e) => {
 		if (e.keyCode === 13) {
-			this.props.handleSubmit(submit)(e)
+			this.props.handleSubmit(this.submit)(e)
 			this.props.resetForm()
 		}
 	}
-	toggleTodo = (id) => {
-		this.props.dispatch(toggleTodo(id))
-	}
-	deleteTodo = (id) => {
-		this.props.dispatch(deleteTodo(id))
-	}
-
 	render() {
 		const {
-			todoList,
 			fields: {
 				todo
-			}
+			},
+			todoList,
+			toggleTodo,
+			deleteTodo
 		} = this.props
 
 		return (
 			<Paper style={styles.root} zDepth={1}>
-				<Toolbar style={{backgroundColor: '#fff', borderBottom: '1px solid rgb(224, 224, 224)'}}>
+				<Toolbar style={styles.toolbar}>
 					<ToolbarTitle text="Todo List" />
 					<ToolbarGroup float="right">
 						<IconMenu 
@@ -90,10 +85,9 @@ class TodoList extends React.Component {
 							<li style={styles.li} key={index}>
 								<Checkbox 
 									defaultChecked={item.checked}
-									style={styles.checkbox} 
 									label={item.label}
 									labelStyle={{textDecoration: item.checked ? 'line-through': 'none'}}
-									onCheck={this.toggleTodo.bind(null, item.id)}
+									onCheck={toggleTodo.bind(null, item.id)}
 								/>
 								<IconMenu 
 									anchorOrigin={{horizontal: 'right', vertical: 'top'}}
@@ -105,7 +99,7 @@ class TodoList extends React.Component {
 										</IconButton>
 									}
 								>
-									<MenuItem primaryText="Delete" onClick={this.deleteTodo.bind(null, item.id)} />
+									<MenuItem primaryText="Delete" onClick={deleteTodo.bind(null, item.id)} />
 								</IconMenu>
 							</li>
 						)
@@ -126,10 +120,10 @@ class TodoList extends React.Component {
 }
 
 export default TodoList = reduxForm({
-		form: 'todos',
-		fields: ['todo']
-	},
-	state => ({
-		todoList: state.example.todo.toJS()
-	})
-)(TodoList)
+	form: 'todos',
+	fields: ['todo']
+}, state => ({
+	todoList: state.example.todo.toJS()
+}), {
+	...todoActions
+})(TodoList)

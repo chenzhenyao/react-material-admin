@@ -4,7 +4,6 @@ import LinkedStateMixin from 'react/lib/LinkedStateMixin'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-
 import { alert } from 'components/alarm'
 import Password from 'components/password'
 
@@ -29,7 +28,7 @@ class Login extends React.Component {
 	static propTypes = {
 		login: React.PropTypes.func
 	}
-	handleSubmit = (values) => {
+	submit = (values) => {
 		let {
 			userName = '', 
 			password = ''
@@ -52,7 +51,7 @@ class Login extends React.Component {
 		
     return (
 			<Paper style={styles.paper} zDepth={3}>
-				<form onSubmit={handleSubmit(this.handleSubmit)}>
+				<form onSubmit={handleSubmit(this.submit)}>
 					<TextField
 						floatingLabelText="账号"
 						hintText="账号" 
@@ -79,8 +78,8 @@ class Login extends React.Component {
 }
 
 export default Login = reduxForm({ // <----- THIS IS THE IMPORTANT PART!
-  form: 'login',                           // a unique name for this form
-  fields: ['userName', 'password'], // all the fields in your form
-}, null, { 
+	form: 'login', // a unique name for this form
+	fields: ['userName', 'password'], // all the fields in your form
+}, null, {
 	...authActions
 })(Login)
