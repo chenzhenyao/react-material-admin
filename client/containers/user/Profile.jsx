@@ -64,7 +64,7 @@ export default class CropBoxExample extends React.Component {
 		]
 		return (
 			<span>
-				<div 
+				{ profilePicture && <div 
 					style={{
 						display: 'inline-block',
 						padding: 6,
@@ -82,7 +82,7 @@ export default class CropBoxExample extends React.Component {
 						backgroundRepeat: 'no-repeat',
 						backgroundImage: `url(${profilePicture})`
 					}} />
-				</div>
+				</div> }
 				<Dialog
 					title="修改头像"
 					contentStyle={{maxWidth: 600}}

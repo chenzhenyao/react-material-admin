@@ -12,6 +12,25 @@ module.exports = {
   },
 	entry: {
 		index: ['./client/index.js', hotMiddlewareScript],
+		vendor: [
+			'fastclick',
+			'immutable',
+			'nprogress',
+			'react',
+			'react-custom-scrollbars',
+			'react-dom',
+			'react-redux',
+			'react-router',
+			'react-router-redux',
+			'react-tap-event-plugin',
+			'redux',
+			'redux-form',
+			'redux-immutablejs',
+			'redux-thunk',
+			'simplestorage.js',
+			'superagent',
+			'validator'
+		]
 	},
 	output: {
 		path: path.join(__dirname, '..', 'public', 'js'), // absolute path!
@@ -36,6 +55,7 @@ module.exports = {
       }
     }),
 		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 	]
